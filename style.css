@@ -2,6 +2,8 @@
   width: 100px;
 }
 
+
+
 *,
 ::after,
 ::before {
@@ -43,6 +45,7 @@ h4 {
 }
 h1 {
   font-size: 3rem;
+  font-family: 'Lobster', cursive;
 }
 h2 {
   font-size: 2rem;
@@ -52,9 +55,12 @@ h3 {
 }
 h4 {
   font-size: 0.875rem;
+  font-family: 'Lobster', cursive;
 }
 p {
   margin-bottom: 1.25rem;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
 }
 
 @media screen and (min-width: 800px) {
@@ -196,7 +202,7 @@ Menu
 .item-text {
   margin-bottom: 0;
   padding-top: 1rem;
-  height: 90px;
+  height: 110px;
 }
 .center{
   display: flex;
@@ -262,7 +268,7 @@ Menu
     max-width: 40rem;
   }
   .photo {
-    height: 189px;
+    height: 206px;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -271,7 +277,7 @@ Menu
     grid-template-columns: 1fr 1fr;
   }
   .photo {
-    height: 200px;
+    height: 209px;
   }
 }
 
@@ -330,6 +336,12 @@ Menu
 .modal-input {
     width: 350px;
     height: 35px;
+    background: #1D1D1D;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.6em;
+    padding-left: 5px;
 }
 
 .modal-selection {
@@ -342,13 +354,23 @@ Menu
     color:#1D1D1D;
     font-size: 15px;
     padding-left: 10px;
-    padding-top: 20px;
+    padding-top: 17px;
+    padding-bottom: 3px;
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
 }
 
 #Pristatymo_būdas {
     width: 350px;
     height: 35px;
     margin: auto;
+    background: #1D1D1D;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 0.6em;
+    padding-left: 5px;
+    font-size: 16px;
 }
 
 .pristatymo_adresas_label {
@@ -357,8 +379,13 @@ Menu
     color: #1D1D1D;
     font-size: 15px;
     padding-left: 10px;
-    padding-top: 20px;
+    padding-top: 17px;
+    padding-bottom: 3px;
+    font-weight: 800;
+    font-size: 16px;
+    font-family: 'Poppins', sans-serif;
 }
+
 
 
 /* #close-btn {
@@ -374,7 +401,7 @@ Menu
     display: block;
     position: absolute;
     top: -5px;
-    right: 10px;
+    right: 5px;
 }
 
 #close-btn:hover {
@@ -430,3 +457,4 @@ Menu
         opacity: 1;
     }
 }
+
