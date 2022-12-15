@@ -40,3 +40,54 @@ let displayMenu = menu.map(function (item) {
 displayMenu = displayMenu.join("");
 section_center.innerHTML = displayMenu;
 
+
+const modalContainer = document.getElementById('modal-container')
+
+const displayModal = `
+                      <div id="modal">
+                            <div id="first-part-block">
+                                <img src="./back_img/food-icon.png" alt="Italian Trulli" id="food-icon">
+                            </div>
+                            <form action="" class="modal-form">
+                                <div class="modal-selection">
+                                    <label for="" class="pristatymo_budas_label">Pristatymo_būdas</label>
+                                    <select  class="custom-select mas" id="Pristatymo_būdas" required>
+                                        <option value="" disabled selected>Pasirinkti...</option>
+                                        <option value="Pristatymas į namus">Pristatymas į namus</option>
+                                        <option value="Atsiėmimas vietoje">Atsiėmimas vietoje</option>
+                                    </select>
+                                </div>
+                                <label for="" class="pristatymo_adresas_label">Pristatymo adresas</label>
+                                <div class="modal-input-div">
+                                    <input type="text" class="modal-input">
+                                </div>
+                                <div id="close-btn">&times;</div>
+                                <div class="uzsakyti-btn-container">
+                                    <button class="uzsakyti-btn">Užsakyti</button>
+                                </div>
+                            </form>
+                        </div>`
+
+modalContainer.innerHTML = displayModal;
+
+const openModal = document.querySelectorAll('.modal')
+const closeBtn = document.getElementById('close-btn');
+
+openModal.forEach((open) => {
+    open.addEventListener('click', function(){
+        modalContainer.style.display = 'block';
+    })
+  })
+
+closeBtn.addEventListener('click', function(){
+    modalContainer.style.display = 'none';
+})
+
+
+window.addEventListener('click', function(e) {
+
+    if (e.target === modalContainer) {
+        modalContainer.style.display = 'none';
+    }
+
+})

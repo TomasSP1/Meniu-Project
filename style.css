@@ -277,15 +277,13 @@ Menu
 
 
 
-
-#modal {
-    background-color: #DDDDDD;
+#modal{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 400px;
-    height: 250px;
+    height: 500px;
     padding: 10px 20px;
     border-radius: 5px;
     font-size: 1.5rem;
@@ -298,8 +296,30 @@ Menu
     animation-duration: .4s;
 }
 
+#first-part-block {
+  height: 250px;
+  width: 400px;
+  background-color: #1D1D1D;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  opacity: 0.999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#food-icon {
+  color: #FAB21C;
+  height: 200px;
+  width: 200px;
+}
+
 .modal-form {
-    height: 100%;
+    height: 250px;
+    width: 400px;
+    background-color: #fff;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .modal-input-div {
@@ -318,7 +338,11 @@ Menu
 }
 
 .pristatymo_budas_label {
-    margin-top: 15px;
+    margin-top: 5px;
+    color:#1D1D1D;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 20px;
 }
 
 #Pristatymo_būdas {
@@ -328,8 +352,12 @@ Menu
 }
 
 .pristatymo_adresas_label {
-    margin-top: 15px;
+    margin-top: 0px;
     display: block;
+    color: #1D1D1D;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-top: 20px;
 }
 
 
@@ -340,7 +368,7 @@ Menu
 #close-btn {
     cursor: pointer;
     font-size: 3rem;
-    color: #ff0000;
+    color: #fff;
     width: 30px;
     height: 30px;
     display: block;
@@ -349,10 +377,14 @@ Menu
     right: 10px;
 }
 
+#close-btn:hover {
+  color: #FAB21C;
+}
+
 .uzsakyti-btn-container {
     display: flex;
     justify-content: center;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .uzsakyti-btn {
@@ -364,8 +396,8 @@ Menu
     font-weight: 600;
     border-radius: 3px;
     border: 0;
-    color: #3a4149;
-    background: #e7ebee;
+    color: #fff;
+    background: #1D1D1D;
     line-height: 1.15;
     font-size: 16px;
     
@@ -374,7 +406,7 @@ Menu
 
 .uzsakyti-btn:hover {
     transition: all .1s ease;
-    box-shadow: 0 0 0 0 #fff, 0 0 0 3px #1de9b6;
+    box-shadow: 0 0 0 0 #fff, 0 0 0 3px #FAB21C;
 }
 
 #modal-container {
