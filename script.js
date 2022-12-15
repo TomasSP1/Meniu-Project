@@ -7,7 +7,7 @@ let displayMenu = menu.map(function (item) {
 
     return `<article class="menu-item">
                 <div class = "food-img">
-                    <img src=${'./back_img/pexels-polina-tankilevitch-5419277.jpg'} alt=${item.title} class="photo" />
+                    <img src=${item.img} alt=${item.title} class="photo" />
                     <span><i class = "far fa-heart"></i></span>
                 </div>
                 <div class="item-info">
