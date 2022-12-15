@@ -50,7 +50,7 @@ const displayModal = `
                             </div>
                             <form action="" class="modal-form">
                                 <div class="modal-selection">
-                                    <label for="" class="pristatymo_budas_label">Pristatymo_būdas</label>
+                                    <label for="" class="pristatymo_budas_label">Pristatymo būdas</label>
                                     <select  class="custom-select mas" id="Pristatymo_būdas" required>
                                         <option value="" disabled selected>Pasirinkti...</option>
                                         <option value="Pristatymas į namus">Pristatymas į namus</option>
