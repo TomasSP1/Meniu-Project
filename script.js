@@ -8,7 +8,7 @@ let displayMenu = menu.map(function (item) {
     return `<article class="menu-item">
                 <div class = "food-img">
                     <img src=${item.img} alt=${item.title} class="photo" />
-                    <span><i class = "far fa-heart"></i></span>
+                    <span><i class = "far fa-heart" id="heartBtn"></i></span>
                 </div>
                 <div class="item-info">
                     <header>
@@ -34,6 +34,7 @@ let displayMenu = menu.map(function (item) {
                     </div>
                 </div>
             </article>`;
+
 
   });
 
@@ -91,3 +92,16 @@ window.addEventListener('click', function(e) {
     }
 
 })
+
+// heart button and localStorage
+
+const heartBtn = document.querySelectorAll('#heartBtn');
+    
+    heartBtn.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            
+            const filtered = menu.filter(item => item.id === index+1);
+            localStorage.setItem('favorite', JSON.stringify(filtered));
+                console.log(filtered)
+        })
+    })

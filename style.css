@@ -153,6 +153,11 @@ Menu
   cursor: pointer;
 }
 
+#heartBtn:hover {
+  color: #FAB21C;
+  cursor: pointer;
+}
+
 .section-center {
   width: 90vw;
   margin: 0 auto;
