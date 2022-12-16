@@ -161,7 +161,7 @@ Menu
 }
 
 #heartBtn:hover {
-  color: #FAB21C;
+  /* color: #FAB21C; */
   cursor: pointer;
 }
 
@@ -224,15 +224,18 @@ Menu
 
 .modal {
     margin-left: 20px;
-    margin-right: 20px;
+    margin-right: 3px;
 }
 .food-price-calc{
   padding: 1.2rem 0 0.6rem 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  
 }
 .food-price-calc h2{
   font-size: 1.5rem;
+  margin-bottom: 0;
 }
 .food-quantity{
   display: flex;

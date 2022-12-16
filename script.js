@@ -105,6 +105,54 @@ window.addEventListener('click', function(e) {
 
 })
 
+const codes = [];
+// localstorage
+const heartBtn = document.querySelectorAll('#heartBtn');
+    
+    heartBtn.forEach((button, index) => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            // const mainArray = JSON.parse(localStorage.getItem("favorite"));
+
+            
+
+            const filtered = menu.filter(item => item.id === index+1);
+            // console.log(filtered);
+            
+            // codes.push(filtered[0]);
+            // console.log(filtered[0])
+            
+            // for (let i = 0; i < codes.length; i++) {
+            //     console.log(codes[i][0])
+            //     nexCode.push(codes[i][0])
+            // }
+
+            // console.log(nexCode)
+
+            if (codes.includes(filtered[0])) {
+
+                alert("Preke tokiu kodu jau yra...");
+                codes.splice((codes.indexOf(filtered[0]) > -1), 1);
+                console.log(codes.indexOf(filtered))
+                
+                    
+                
+                
+        
+            } else {
+        
+                //2. i krepseli idedu nauja preke
+                
+                codes.push(filtered[0]);
+            }
+            console.log(codes)
+            localStorage.setItem('favorite', JSON.stringify(filtered));
+                // console.log(filtered)
+        })
+    })
+
+// localstorage pabaiga
+
     const allFood = document.querySelectorAll('.menu-item');
 
 
@@ -190,7 +238,6 @@ function displayMenuButtons() {
 
     );
 
-    console.log(categories)
 
     const categoryBtns = categories
 
@@ -206,13 +253,11 @@ function displayMenuButtons() {
 
       .join("");
 
-      console.log(categoryBtns)
 
     btnContainer.innerHTML = categoryBtns;
 
     const filterBtns = btnContainer.querySelectorAll(".filter-btn");
 
-    console.log(filterBtns);
 
  
 
@@ -222,7 +267,6 @@ function displayMenuButtons() {
         //   console.log(btn)
 
         const category = e.currentTarget.dataset.id;
-        console.log(category)
 
         const menuCategory = menu.filter(function (menuItem) {
 
