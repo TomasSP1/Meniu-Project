@@ -20,7 +20,7 @@ function diplayMenuItems(menuItems) {
     return `<article class="menu-item">
                 <div class = "food-img">
                     <img src=${item.img} alt=${item.title} class="photo" />
-                    <span><i class = "far fa-heart" id="heartBtn"></i></span>
+                    <span><i class = "far fa-heart" id="heartBtn${item.id}"></i></span>
                 </div>
                 <div class="item-info">
                     <header>
@@ -70,7 +70,7 @@ const displayModal = `
                                         <option value="Atsiėmimas vietoje">Atsiėmimas vietoje</option>
                                     </select>
                                 </div>
-                                <label for="" class="pristatymo_adresas_label">Pristatymo adresas</label>
+                                <label for="" class="pristatymo_adresas_label">Pristatymo adresas / Restorano adresas</label>
                                 <div class="modal-input-div">
                                     <input type="text" class="modal-input">
                                 </div>
@@ -82,6 +82,7 @@ const displayModal = `
                         </div>`
 
 modalContainer.innerHTML = displayModal;
+
 
 const openModal = document.querySelectorAll('.modal')
 const closeBtn = document.getElementById('close-btn');
@@ -104,6 +105,57 @@ window.addEventListener('click', function(e) {
     }
 
 })
+
+// heart button and localStorage
+const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
+
+// myArray.forEach(function(favorite) {
+//     document.getElementById(favorite).className = 'fas'
+// })
+
+
+
+const heartBtn = document.querySelectorAll('.fa-heart');
+
+// if (JSON.parse(localStorage.getItem("favorite"))) {
+//     // heartBtn.classList.toggle('fas');
+//     console.log('stebiu nauja array')
+// }
+
+console.log(myArray)
+console.log('myArray pries mygtuko paspaudima')
+
+
+    
+    heartBtn.forEach((button, index) => {
+        button.addEventListener('click', function() {
+            const filtered = menu.filter(item => item.id === index+1);
+            console.log(myArray)
+            console.log('myArray po mygtuko paspaudima')
+            // myArray.push(filtered[0])
+            console.log(filtered[0])
+            if (myArray.includes(filtered[0])) {
+                myArray.splice(myArray.indexOf(filtered[0]), 1)
+                localStorage.setItem('favorite', JSON.stringify(myArray));
+                console.log('netinkamas')
+                button.classList.toggle('fas')
+            } else {
+                console.log('it does not include')
+                myArray.push(filtered[0]);
+                localStorage.setItem('favorite', JSON.stringify(myArray));
+                console.log('tinkamas')
+                button.classList.toggle('fas')
+            }
+            
+
+            // localStorage.setItem('favorite', JSON.stringify(filtered));
+                // console.log(filtered)
+
+                // console.log(myArray)
+                // console.log(myArray.indexOf(filtered[0]))
+
+        })
+    })
 
     const allFood = document.querySelectorAll('.menu-item');
 
@@ -152,18 +204,7 @@ function changeOrder(food, changeType){
 }
 
 
-// heart button and localStorage
 
-const heartBtn = document.querySelectorAll('#heartBtn');
-    
-    heartBtn.forEach((button, index) => {
-        button.addEventListener('click', function() {
-            
-            const filtered = menu.filter(item => item.id === index+1);
-            localStorage.setItem('favorite', JSON.stringify(filtered));
-                console.log(filtered)
-        })
-    })
 
 
 
@@ -172,6 +213,7 @@ const heartBtn = document.querySelectorAll('#heartBtn');
 // mygtuku filterinimas
 
 function displayMenuButtons() {
+    
     const categories = menu.reduce(
 
       function (values, item) {
@@ -190,7 +232,7 @@ function displayMenuButtons() {
 
     );
 
-    console.log(categories)
+    
 
     const categoryBtns = categories
 
@@ -206,23 +248,22 @@ function displayMenuButtons() {
 
       .join("");
 
-      console.log(categoryBtns)
+      
 
     btnContainer.innerHTML = categoryBtns;
 
     const filterBtns = btnContainer.querySelectorAll(".filter-btn");
 
-    console.log(filterBtns);
+    
 
  
 
     filterBtns.forEach(function (btn) {
-
       btn.addEventListener("click", function (e) {
         //   console.log(btn)
-
+        
         const category = e.currentTarget.dataset.id;
-        console.log(category)
+        
 
         const menuCategory = menu.filter(function (menuItem) {
 
@@ -235,11 +276,9 @@ function displayMenuButtons() {
           });
   
           if (category === "all") {
-  
             diplayMenuItems(menu);
   
           } else {
-  
             diplayMenuItems(menuCategory);
   
           }
@@ -247,5 +286,4 @@ function displayMenuButtons() {
         });
   
       });
-  
     }
