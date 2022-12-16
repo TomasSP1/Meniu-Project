@@ -160,7 +160,7 @@ Menu
   color: #FAB21C;
 }
 
-#heartBtn:hover {
+span i:hover {
   color: #FAB21C;
   cursor: pointer;
 }
@@ -170,6 +170,7 @@ Menu
   margin: 0 auto;
   max-width: 1170px;
   display: grid;
+  flex-wrap: wrap;
   gap: 3rem 2rem;
   justify-items: center;
   margin-top: 50px;
@@ -200,6 +201,11 @@ Menu
   top: .4rem;
   right: .8rem;
 }
+
+span .fas {
+  color: red;
+}
+
 .item-info header {
   display: flex;
   justify-content: space-between;
@@ -223,16 +229,19 @@ Menu
 }
 
 .modal {
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 5px;
+    border-radius: 3px;
 }
 .food-price-calc{
   padding: 1.2rem 0 0.6rem 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 .food-price-calc h2{
   font-size: 1.5rem;
+  margin-bottom: 0px;
 }
 .food-quantity{
   display: flex;
@@ -255,8 +264,16 @@ Menu
 .order-order{
   cursor: pointer;
   background: #fff;
-  /* border-radius: 3px; */
-  /* border: #3a4149 0.5px solid; */
+}
+
+.order-dec {
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.order-inc {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
 }
 
 .order-dec:hover {
@@ -285,7 +302,7 @@ Menu
 }
 @media screen and (min-width: 1200px) {
   .section-center {
-    width: 95vw;
+    width: 95vw; 
     grid-template-columns: 1fr 1fr;
   }
   .photo {
