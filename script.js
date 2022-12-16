@@ -1,9 +1,21 @@
 import menu from './src/data/data.js'
 console.log(menu)
 
+
+window.addEventListener("DOMContentLoaded", function () {
+
+    diplayMenuItems(menu);
+    displayMenuButtons();
+
+  });
+
 const section_center = document.querySelector('.section-center');
 
-let displayMenu = menu.map(function (item) {
+const btnContainer = document.querySelector(".btn-container")
+
+function diplayMenuItems(menuItems) {
+
+    let displayMenu = menuItems.map(function (item) {
 
     return `<article class="menu-item">
                 <div class = "food-img">
@@ -35,12 +47,12 @@ let displayMenu = menu.map(function (item) {
                 </div>
             </article>`;
 
-
+            // displayMenu = displayMenu.join("");
+            // section_center.innerHTML = displayMenu;
   });
 
 displayMenu = displayMenu.join("");
 section_center.innerHTML = displayMenu;
-
 
 const modalContainer = document.getElementById('modal-container')
 
@@ -93,6 +105,53 @@ window.addEventListener('click', function(e) {
 
 })
 
+    const allFood = document.querySelectorAll('.menu-item');
+
+
+    allFood.forEach((food, index) => {
+
+        food.querySelector('.food-total').textContent = '$ 0.00'
+
+    })
+
+    allFood.forEach((food, index) => {
+
+        food.addEventListener('click', (event) => {
+
+            if(event.target.classList.contains('order-dec') || event.target.parentElement.classList.contains('order-dec')){
+
+                changeOrder(food, 'dec');
+
+            }
+
+
+            if(event.target.classList.contains('order-inc') || event.target.parentElement.classList.contains('order-inc')){
+
+                changeOrder(food, 'inc');
+
+            }
+
+        });
+
+    });
+
+function changeOrder(food, changeType){
+
+    let foodQuan = parseInt(food.querySelector('.order-val').textContent);
+    let foodPrice = parseFloat(food.querySelector('.price').textContent.replace(/[^\d.-]/g, ''));
+
+
+    if(changeType === 'dec' && foodQuan > 0) foodQuan--;
+
+    if(changeType === 'inc') foodQuan++;
+
+    food.querySelector('.order-val').textContent = foodQuan;
+    food.querySelector('.food-total').textContent = `$ ${(foodQuan * foodPrice).toFixed(2)}`;
+
+}
+}
+
+
 // heart button and localStorage
 
 const heartBtn = document.querySelectorAll('#heartBtn');
@@ -105,3 +164,88 @@ const heartBtn = document.querySelectorAll('#heartBtn');
                 console.log(filtered)
         })
     })
+
+
+
+
+
+// mygtuku filterinimas
+
+function displayMenuButtons() {
+    const categories = menu.reduce(
+
+      function (values, item) {
+
+        if (!values.includes(item.category)) {
+
+          values.push(item.category);
+
+        }
+
+        return values;
+
+      },
+
+      ["all"]
+
+    );
+
+    console.log(categories)
+
+    const categoryBtns = categories
+
+      .map(function (category) {
+
+        return `<button type="button" class="filter-btn" data-id=${category}>
+
+            ${category}
+
+          </button>`;
+
+      })
+
+      .join("");
+
+      console.log(categoryBtns)
+
+    btnContainer.innerHTML = categoryBtns;
+
+    const filterBtns = btnContainer.querySelectorAll(".filter-btn");
+
+    console.log(filterBtns);
+
+ 
+
+    filterBtns.forEach(function (btn) {
+
+      btn.addEventListener("click", function (e) {
+        //   console.log(btn)
+
+        const category = e.currentTarget.dataset.id;
+        console.log(category)
+
+        const menuCategory = menu.filter(function (menuItem) {
+
+            if (menuItem.category === category) {
+  
+              return menuItem;
+  
+            }
+  
+          });
+  
+          if (category === "all") {
+  
+            diplayMenuItems(menu);
+  
+          } else {
+  
+            diplayMenuItems(menuCategory);
+  
+          }
+  
+        });
+  
+      });
+  
+    }
