@@ -1,22 +1,21 @@
 import menu from './src/data/data.js'
 // console.log(menu)
-
-
+ 
+ 
 window.addEventListener("DOMContentLoaded", function () {
-
+ 
   diplayMenuItems(menu);
-  displayMenuButtons();
-
+  renderAndBindMenuCategories();
+ 
 });
-
+ 
 const section_center = document.querySelector('.section-center');
-
 const btnContainer = document.querySelector(".btn-container")
-
-function diplayMenuItems(menuItems) {
-
-  let displayMenu = menuItems.map(function (item) {
-
+ 
+function diplayMenuItems(pageMenuItems) {
+ 
+  let menuItemsHtml = pageMenuItems.map(function (item) {
+ 
     return `<article class="menu-item">
                 <div class = "food-img">
                     <img src=${item.img} alt=${item.title} class="photo" />
@@ -47,14 +46,14 @@ function diplayMenuItems(menuItems) {
                 </div>
             </article>`;
   });
-
-  displayMenu = displayMenu.join("");
-  section_center.innerHTML = displayMenu;
-
+ 
+  menuItemsHtml = menuItemsHtml.join("");
+  section_center.innerHTML = menuItemsHtml;
+ 
   // creating modal
-
+ 
   const modalContainer = document.getElementById('modal-container')
-
+ 
   const displayModal = `
                         <div id="modal">
                               <div id="first-part-block">
@@ -79,190 +78,176 @@ function diplayMenuItems(menuItems) {
                                   </div>
                               </form>
                           </div>`
-
+ 
   modalContainer.innerHTML = displayModal;
-
-
+ 
+ 
   const openModal = document.querySelectorAll('.modal')
   const closeBtn = document.getElementById('close-btn');
-
+ 
   openModal.forEach((open) => {
     open.addEventListener('click', function () {
       modalContainer.style.display = 'block';
     })
   })
-
+ 
   closeBtn.addEventListener('click', function () {
     modalContainer.style.display = 'none';
   })
-
-
+ 
+ 
   window.addEventListener('click', function (e) {
-
+ 
     if (e.target === modalContainer) {
       modalContainer.style.display = 'none';
     }
-
+ 
   })
 
+  // i atskira funkcija ikisti modala iki 105 eilutes
+ 
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
-
+ 
   const heartBtns = document.querySelectorAll('.fa-heart');
+ 
 
   myArray.forEach((item) => {
     heartBtns.forEach(heartBtn => {
+      console.log(heartBtn.getAttribute('data-id'), item.id, heartBtn.getAttribute('data-id') == item.id);
+ 
       if (heartBtn.getAttribute('data-id') == item.id) {
-        heartBtn.classList.remove("fas");
-      } else {
+        console.log('first time added set active item', heartBtn.classList)
         heartBtn.classList.add("fas");
+        console.log('first time added set active item', heartBtn.classList)
+        
       }
     })
     // console.log(item);
     // console.log(id, heartBtn[id]);
   });
-
-  heartBtns.forEach((button, index) => {
+ 
+  heartBtns.forEach((button) => {
     button.addEventListener("click", function () {
       const finded = menu.find((item) => item.id == button.getAttribute('data-id'));
-      console.log("finded", finded);
+      // console.log("finded", finded);
+ 
       const indeksas = myArray.findIndex((el) => el.id == button.getAttribute('data-id'));
+ 
       console.log("indeksas", indeksas);
       if (indeksas === -1) {
         myArray.push(finded);
         button.classList.add("fas");
+        console.log('added set active item on click')
       } else {
         myArray.splice(indeksas, 1);
         button.classList.remove("fas");
+        console.log('remove active item on click')
       }
       localStorage.setItem("favorite", JSON.stringify(myArray));
     });
   });
-
-
+ 
+ 
   // creating counting system with plus and minus
-
+ 
   const allFood = document.querySelectorAll('.menu-item');
-
+ 
   allFood.forEach((food, index) => {
-
+ 
     food.querySelector('.food-total').textContent = '$ 0.00'
-
+ 
   })
-
+ 
   allFood.forEach((food, index) => {
-
+ 
     food.addEventListener('click', (event) => {
-
+ 
       if (event.target.classList.contains('order-dec') || event.target.parentElement.classList.contains('order-dec')) {
-
+ 
         changeOrder(food, 'dec');
-
+ 
       }
-
-
+ 
+ 
       if (event.target.classList.contains('order-inc') || event.target.parentElement.classList.contains('order-inc')) {
-
+ 
         changeOrder(food, 'inc');
-
+ 
       }
-
+ 
     });
-
+ 
   });
-
+ 
   function changeOrder(food, changeType) {
-
+ 
     let foodQuan = parseInt(food.querySelector('.order-val').textContent);
     let foodPrice = parseFloat(food.querySelector('.price').textContent.replace(/[^\d.-]/g, ''));
-
-
+ 
+ 
     if (changeType === 'dec' && foodQuan > 0) foodQuan--;
-
+ 
     if (changeType === 'inc') foodQuan++;
-
+ 
     food.querySelector('.order-val').textContent = foodQuan;
     food.querySelector('.food-total').textContent = `$ ${(foodQuan * foodPrice).toFixed(2)}`;
-
+ 
   }
-
+ 
 }
-
-
-
-
-
-
-
-
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 // creating buttons for menu filtering
-
-function displayMenuButtons() {
-
+ 
+function renderAndBindMenuCategories() {
+ 
   const categories = menu.reduce(
-
     function (values, item) {
-
       if (!values.includes(item.category)) {
-
         values.push(item.category);
-
       }
-
       return values;
-
     },
-
     ["all"]
-
   );
-
-
-
+ 
   const categoryBtns = categories
-
     .map(function (category) {
-
       return `<button type="button" class="filter-btn" data-id=${category}>
-
             ${category}
-
           </button>`;
-
     })
-
     .join("");
-
+ 
   btnContainer.innerHTML = categoryBtns;
-
+ 
   const filterBtns = btnContainer.querySelectorAll(".filter-btn");
-
-
+ 
   filterBtns.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
-
       const category = e.currentTarget.dataset.id;
-
-
+ 
       const menuCategory = menu.filter(function (menuItem) {
-
         if (menuItem.category === category) {
-
           return menuItem;
-
         }
-
       });
-
+ 
       if (category === "all") {
         diplayMenuItems(menu);
-
       } else {
         diplayMenuItems(menuCategory);
-
       }
-
     });
-
+ 
   });
 }
+
+
