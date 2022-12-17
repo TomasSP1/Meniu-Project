@@ -108,20 +108,21 @@ function diplayMenuItems(menuItems) {
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
 
-  const heartBtn = document.querySelectorAll('.fa-heart');
+  const heartBtns = document.querySelectorAll('.fa-heart');
 
   myArray.forEach((item) => {
+    heartBtns.forEach(heartBtn => {
+      if (heartBtn.getAttribute('data-id') == item.id) {
+        heartBtn.classList.remove("fas");
+      } else {
+        heartBtn.classList.add("fas");
+      }
+    })
     // console.log(item);
-    const id = item.id;
     // console.log(id, heartBtn[id]);
-    if (heartBtn[id - 1] === item.id) {
-      heartBtn[id].classList.remove("fas");
-    } else {
-      heartBtn[id - 1].classList.add("fas");
-    }
   });
 
-  heartBtn.forEach((button, index) => {
+  heartBtns.forEach((button, index) => {
     button.addEventListener("click", function () {
       const finded = menu.find((item) => item.id == button.getAttribute('data-id'));
       console.log("finded", finded);
