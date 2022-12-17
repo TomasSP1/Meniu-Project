@@ -2,8 +2,6 @@
   width: 100px;
 }
 
-
-
 *,
 ::after,
 ::before {
@@ -11,6 +9,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background: url('./back_img/pexels-ella-olsson-1640772.jpg') top right no-repeat;
   background-attachment: fixed;
@@ -20,15 +19,19 @@ body {
   position: relative;
   color: #fff;
 }
+
 ul {
   list-style-type: none;
 }
+
 a {
   text-decoration: none;
 }
+
 img:not(.logo) {
   width: 100%;
 }
+
 img {
   display: block;
 }
@@ -42,6 +45,7 @@ h4 {
   line-height: 1.25;
   margin-bottom: 0.75rem;
 }
+
 h1 {
   font-size: 3rem;
   font-family: 'Lobster', cursive;
@@ -50,13 +54,16 @@ h1 {
 h2 {
   font-size: 2rem;
 }
+
 h3 {
   font-size: 1.25rem;
 }
+
 h4 {
   font-size: 0.875rem;
   font-family: 'Lobster', cursive;
 }
+
 p {
   margin-bottom: 1.25rem;
   font-weight: 500;
@@ -86,7 +93,7 @@ p {
     line-height: 1;
   }
 }
-/*  global classes */
+
 
 .btn {
   text-transform: uppercase;
@@ -111,38 +118,30 @@ p {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* color: #FAB21C; */
 }
-
-main {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-}
-/*
-=============== 
-Menu
-===============
-*/
 
 
 .menu {
   padding: 5rem 0;
 }
+
 .title {
   text-align: center;
   margin-bottom: 2rem;
 }
+
 .underline {
   width: 5rem;
   height: 0.25rem;
   margin-left: auto;
   margin-right: auto;
 }
+
 .btn-container {
   display: flex;
   justify-content: center;
 }
+
 .filter-btn {
   background: none;
   border: none;
@@ -150,7 +149,6 @@ Menu
   font-weight: 600;
   text-transform: capitalize;
   margin: 0 0.5rem;
-  /* letter-spacing: 1px; */
   padding: 0.375rem 0.75rem;
   cursor: pointer;
   color: #fff;
@@ -176,6 +174,7 @@ span i:hover {
   margin-top: 50px;
   margin-bottom: 50px;
 }
+
 .menu-item {
   display: grid;
   gap: 1rem 2rem;
@@ -185,15 +184,16 @@ span i:hover {
   background: #1D1D1D;
   opacity: 0.95;
 }
+
 .photo {
   object-fit: cover;
   border-radius: 3px;
-  /* min-height: 50%; */
 }
+
 .food-img{
   position: relative;
-  /* height: 180px; */
 }
+
 .food-img span{
   position: absolute;
   font-size: 1.5rem;
@@ -233,32 +233,38 @@ span .fas {
     margin-right: 5px;
     border-radius: 3px;
 }
+
 .food-price-calc{
   padding: 1.2rem 0 0.6rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .food-price-calc h2{
   font-size: 1.5rem;
   margin-bottom: 0px;
 }
+
 .food-quantity{
   display: flex;
   align-items: center;
 }
+
 .food-quantity div{
   width: 35px;
   height: 35px;
   color: #1D1D1D;
   font-size: 1rem;
 }
+
 .order-val{
   font-weight: 600;
   background: #f9f9f9;
   border-left: #1D1D1D solid 0.5px;
   border-right: #1D1D1D solid 0.5px;
 }
+
 .order-dec,
 .order-inc,
 .order-order{
@@ -280,15 +286,16 @@ span .fas {
   background: #FAB21C;
   color: #fff;
 }
+
 .order-inc:hover {
   background: #FAB21C;
   color: #fff;
 }
+
 .order-order:hover {
   background: #FAB21C;
   color: #fff;
 }
-
 
 @media screen and (min-width: 768px) {
   .menu-item {
@@ -300,6 +307,7 @@ span .fas {
     height: 206px;
   }
 }
+
 @media screen and (min-width: 1200px) {
   .section-center {
     width: 95vw; 
@@ -310,7 +318,18 @@ span .fas {
   }
 }
 
+/* styling modal */
 
+#modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, .2);
+}
 
 #modal{
     position: absolute;
@@ -326,7 +345,6 @@ span .fas {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
     animation-name: animatemodal;
     animation-duration: .4s;
 }
@@ -378,7 +396,7 @@ span .fas {
     flex-direction: column;
 }
 
-.pristatymo_budas_label {
+.label_delivery {
     margin-top: 5px;
     color:#1D1D1D;
     font-size: 15px;
@@ -389,7 +407,7 @@ span .fas {
     font-family: 'Poppins', sans-serif;
 }
 
-#Pristatymo_būdas {
+#select_delivery {
     width: 350px;
     height: 35px;
     margin: auto;
@@ -402,7 +420,7 @@ span .fas {
     font-size: 16px;
 }
 
-.pristatymo_adresas_label {
+.label_address {
     margin-top: 0px;
     display: block;
     color: #1D1D1D;
@@ -415,11 +433,6 @@ span .fas {
     font-family: 'Poppins', sans-serif;
 }
 
-
-
-/* #close-btn {
-    font-size: 3rem;
-} */
 
 #close-btn {
     cursor: pointer;
@@ -437,16 +450,15 @@ span .fas {
   color: #FAB21C;
 }
 
-.uzsakyti-btn-container {
+.order-btn-container {
     display: flex;
     justify-content: center;
     margin-top: 20px;
 }
 
-.uzsakyti-btn {
+.order-btn {
     width: 200px;
     height: 35px;
-    
     outline: none;
     cursor: pointer;
     font-weight: 600;
@@ -456,24 +468,11 @@ span .fas {
     background: #1D1D1D;
     line-height: 1.15;
     font-size: 16px;
-    
-
 }
 
-.uzsakyti-btn:hover {
+.order-btn:hover {
     transition: all .1s ease;
     box-shadow: 0 0 0 0 #fff, 0 0 0 3px #FAB21C;
-}
-
-#modal-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, .2);
 }
 
 @keyframes animatemodal {
@@ -486,4 +485,6 @@ span .fas {
         opacity: 1;
     }
 }
+
+/* end of Modal style */
 
