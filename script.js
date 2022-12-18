@@ -4,7 +4,7 @@ import menu from './src/data/data.js'
  
 window.addEventListener("DOMContentLoaded", function () {
  
-  diplayMenuItems(menu);
+  displayMenuItems(menu);
   renderAndBindMenuCategories();
  
 });
@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function () {
 const section_center = document.querySelector('.section-center');
 const btnContainer = document.querySelector(".btn-container")
  
-function diplayMenuItems(pageMenuItems) {
+function displayMenuItems(pageMenuItems) {
  
   let menuItemsHtml = pageMenuItems.map(function (item) {
  
@@ -39,7 +39,7 @@ function diplayMenuItems(pageMenuItems) {
                         <div class = "order-inc center">
                             <i class = "fas fa-plus"></i>
                         </div>
-                        <div class="order-order center modal">
+                        <div class="order-order center cart">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                         </div>
                     </div>
@@ -82,7 +82,7 @@ function diplayMenuItems(pageMenuItems) {
   modalContainer.innerHTML = displayModal;
  
  
-  const openModal = document.querySelectorAll('.modal')
+  const openModal = document.querySelectorAll('.cart')
   const closeBtn = document.getElementById('close-btn');
  
   openModal.forEach((open) => {
@@ -103,8 +103,6 @@ function diplayMenuItems(pageMenuItems) {
     }
  
   })
-
-  // i atskira funkcija ikisti modala iki 105 eilutes
  
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
@@ -241,9 +239,9 @@ function renderAndBindMenuCategories() {
       });
  
       if (category === "all") {
-        diplayMenuItems(menu);
+        displayMenuItems(menu);
       } else {
-        diplayMenuItems(menuCategory);
+        displayMenuItems(menuCategory);
       }
     });
  
