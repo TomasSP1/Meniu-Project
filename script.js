@@ -121,8 +121,6 @@ function displayMenuItems(pageMenuItems) {
         
       }
     })
-    // console.log(item);
-    // console.log(id, heartBtn[id]);
   });
  
   heartBtns.forEach((button) => {

@@ -102,7 +102,6 @@ p {
 }
 
 .main-header {
-  height: 120px;
   background: var(--black);
   opacity: 0.95;
   display: flex;
@@ -470,9 +469,25 @@ span .fas {
 
 /* responsive design */
 
+@media screen and (max-width: 400px) {
+  h1 {
+    font-size: 3.5em;
+  }
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .filter-btn {
+    font-size: 1.5em;
+    border: 0.2px solid var(--white);
+    margin: 0;
+  }
+}
+
 @media screen and (min-width: 800px) {
   h1 {
-    font-size: 4rem;
+    font-size: 4em;
   }
   h2 {
     font-size: 2.5rem;
