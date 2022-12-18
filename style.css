@@ -29,8 +29,10 @@ body {
   background-size: 100%;
   line-height: 1.5;
   font-size: 0.875rem;
-  position: relative;
+  /* position: relative; */
   color: var(--white);
+  width: 100vw;
+  position: absolute;
 }
 
 ul {
@@ -521,6 +523,6 @@ span .fas {
 
 @media screen and (max-width: 1200px) {
   body {
-    background: url('./back_img/pexels-ella-olsson-1640772.jpg')
+    background: url('./back_img/pexels-ella-olsson-1640772.jpg');
   }
 }
