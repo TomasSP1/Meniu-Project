@@ -70,7 +70,7 @@ function displayMenuItems(pageMenuItems) {
                                   </div>
                                   <label for="" class="label_address">Pristatymo adresas / Restorano adresas</label>
                                   <div class="modal-input-div">
-                                      <input type="text" class="modal-input">
+                                      <input type="text" class="modal-input" required>
                                   </div>
                                   <div id="close-btn">&times;</div>
                                   <div class="order-btn-container">
@@ -104,6 +104,19 @@ function displayMenuItems(pageMenuItems) {
  
   })
  
+  const order_btns = document.querySelectorAll('.order-btn');
+  const modal_input = document.querySelector('.modal-input');
+
+  order_btns.forEach(order => {
+    order.addEventListener('click', function() {
+      if (!(modal_input.value === '')) {
+        alert('Your order has been accepted');
+      }
+    })
+  })
+
+
+
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
  
@@ -126,7 +139,6 @@ function displayMenuItems(pageMenuItems) {
   heartBtns.forEach((button) => {
     button.addEventListener("click", function () {
       const finded = menu.find((item) => item.id == button.getAttribute('data-id'));
-      // console.log("finded", finded);
  
       const indeksas = myArray.findIndex((el) => el.id == button.getAttribute('data-id'));
  
