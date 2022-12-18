@@ -480,7 +480,7 @@ span .fas {
   }
   .filter-btn {
     font-size: 1.5em;
-    border: 0.2px solid var(--white);
+    /* border: 0.2px solid var(--white); */
     margin: 0;
   }
 }
