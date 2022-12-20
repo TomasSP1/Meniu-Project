@@ -6,12 +6,13 @@ window.addEventListener("DOMContentLoaded", function () {
  
   displayMenuItems(menu);
   renderAndBindMenuCategories();
+  
  
 });
  
 const section_center = document.querySelector('.section-center');
 const btnContainer = document.querySelector(".btn-container")
- 
+
 function displayMenuItems(pageMenuItems) {
  
   let menuItemsHtml = pageMenuItems.map(function (item) {
@@ -49,6 +50,52 @@ function displayMenuItems(pageMenuItems) {
  
   menuItemsHtml = menuItemsHtml.join("");
   section_center.innerHTML = menuItemsHtml;
+
+  // creating counting system with plus and minus
+  
+  const allFood = document.querySelectorAll('.menu-item');
+ 
+  allFood.forEach((food, index) => {
+ 
+    food.querySelector('.food-total').textContent = '$ 0.00'
+ 
+  })
+  
+  allFood.forEach((food, index) => {
+ 
+    food.addEventListener('click', (event) => {
+ 
+      if (event.target.classList.contains('order-dec') || event.target.parentElement.classList.contains('order-dec')) {
+ 
+        changeOrder(food, 'dec');
+ 
+      }
+ 
+ 
+      if (event.target.classList.contains('order-inc') || event.target.parentElement.classList.contains('order-inc')) {
+ 
+        changeOrder(food, 'inc');
+ 
+      }
+ 
+    });
+ 
+  });
+  
+  function changeOrder(food, changeType) {
+ 
+    let foodQuan = parseInt(food.querySelector('.order-val').textContent);
+    let foodPrice = parseFloat(food.querySelector('.price').textContent.replace(/[^\d.-]/g, ''));
+ 
+ 
+    if (changeType === 'dec' && foodQuan > 0) foodQuan--;
+ 
+    if (changeType === 'inc') foodQuan++;
+ 
+    food.querySelector('.order-val').textContent = foodQuan;
+    food.querySelector('.food-total').textContent = `$ ${(foodQuan * foodPrice).toFixed(2)}`;
+ 
+  }
  
   // creating modal
  
@@ -84,13 +131,26 @@ function displayMenuItems(pageMenuItems) {
  
   const openModal = document.querySelectorAll('.cart')
   const closeBtn = document.getElementById('close-btn');
+
+  const totalFood = document.querySelectorAll('.food-total');
+  totalFood.forEach(food => console.log(food.innerHTML))
+  const totalFoodArray = [...totalFood];
+  // bandymas.setAttribute('data-class', 'bandymas');
  
+  // console.log(bandymas.innerHTML)
+  console.log(totalFood.parentElement)
   openModal.forEach((open) => {
-    open.addEventListener('click', function () {
-      modalContainer.style.display = 'block';
-    })
+      open.addEventListener('click', function () {
+          // if ((totalFood).forEach(food => food.innerHTML) === '$ 0.00') {
+          //   alert('Please order at least one dish');
+            
+          // } else {
+          // console.log(totalFood.parentElement)
+          modalContainer.style.display = 'block';
+        }
+    )
   })
- 
+
   closeBtn.addEventListener('click', function () {
     modalContainer.style.display = 'none';
   })
@@ -116,7 +176,6 @@ function displayMenuItems(pageMenuItems) {
   })
 
 
-
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
  
@@ -125,12 +184,12 @@ function displayMenuItems(pageMenuItems) {
 
   myArray.forEach((item) => {
     heartBtns.forEach(heartBtn => {
-      console.log(heartBtn.getAttribute('data-id'), item.id, heartBtn.getAttribute('data-id') == item.id);
+      // console.log(heartBtn.getAttribute('data-id'), item.id, heartBtn.getAttribute('data-id') == item.id);
  
       if (heartBtn.getAttribute('data-id') == item.id) {
-        console.log('first time added set active item', heartBtn.classList)
+        // console.log('first time added set active item', heartBtn.classList)
         heartBtn.classList.add("fas");
-        console.log('first time added set active item', heartBtn.classList)
+        // console.log('first time added set active item', heartBtn.classList)
         
       }
     })
@@ -142,75 +201,20 @@ function displayMenuItems(pageMenuItems) {
  
       const indeksas = myArray.findIndex((el) => el.id == button.getAttribute('data-id'));
  
-      console.log("indeksas", indeksas);
+      // console.log("indeksas", indeksas);
       if (indeksas === -1) {
         myArray.push(finded);
         button.classList.add("fas");
-        console.log('added set active item on click')
+        // console.log('added set active item on click')
       } else {
         myArray.splice(indeksas, 1);
         button.classList.remove("fas");
-        console.log('remove active item on click')
+        // console.log('remove active item on click')
       }
       localStorage.setItem("favorite", JSON.stringify(myArray));
     });
   });
- 
- 
-  // creating counting system with plus and minus
- 
-  const allFood = document.querySelectorAll('.menu-item');
- 
-  allFood.forEach((food, index) => {
- 
-    food.querySelector('.food-total').textContent = '$ 0.00'
- 
-  })
- 
-  allFood.forEach((food, index) => {
- 
-    food.addEventListener('click', (event) => {
- 
-      if (event.target.classList.contains('order-dec') || event.target.parentElement.classList.contains('order-dec')) {
- 
-        changeOrder(food, 'dec');
- 
-      }
- 
- 
-      if (event.target.classList.contains('order-inc') || event.target.parentElement.classList.contains('order-inc')) {
- 
-        changeOrder(food, 'inc');
- 
-      }
- 
-    });
- 
-  });
- 
-  function changeOrder(food, changeType) {
- 
-    let foodQuan = parseInt(food.querySelector('.order-val').textContent);
-    let foodPrice = parseFloat(food.querySelector('.price').textContent.replace(/[^\d.-]/g, ''));
- 
- 
-    if (changeType === 'dec' && foodQuan > 0) foodQuan--;
- 
-    if (changeType === 'inc') foodQuan++;
- 
-    food.querySelector('.order-val').textContent = foodQuan;
-    food.querySelector('.food-total').textContent = `$ ${(foodQuan * foodPrice).toFixed(2)}`;
- 
-  }
- 
 }
- 
- 
- 
- 
- 
- 
- 
  
 // creating buttons for menu filtering
  
