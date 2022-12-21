@@ -40,9 +40,6 @@ function displayMenuItems(pageMenuItems) {
                         <div class = "order-inc center">
                             <i class = "fas fa-plus"></i>
                         </div>
-                        <div class="order-order center cart">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        </div>
                     </div>
                 </div>
             </article>`;
@@ -117,7 +114,7 @@ function displayMenuItems(pageMenuItems) {
                                   </div>
                                   <label for="" class="label_address">Pristatymo adresas / Restorano adresas</label>
                                   <div class="modal-input-div">
-                                      <input type="text" class="modal-input" required>
+                                      <input type="text" class="modal-input" required placeholder="Kauno g. 22, Kaunas">
                                   </div>
                                   <div id="close-btn">&times;</div>
                                   <div class="order-btn-container">
@@ -128,27 +125,44 @@ function displayMenuItems(pageMenuItems) {
  
   modalContainer.innerHTML = displayModal;
  
+  // const mainHeader = document.querySelector('.main-header');
+  
  
+
   const openModal = document.querySelectorAll('.cart')
   const closeBtn = document.getElementById('close-btn');
 
   const totalFood = document.querySelectorAll('.food-total');
-  totalFood.forEach(food => console.log(food.innerHTML))
-  const totalFoodArray = [...totalFood];
+
+  console.log(totalFood.innerHTML)
+  
+
+
+
+
+  
   // bandymas.setAttribute('data-class', 'bandymas');
  
   // console.log(bandymas.innerHTML)
-  console.log(totalFood.parentElement)
   openModal.forEach((open) => {
       open.addEventListener('click', function () {
-          // if ((totalFood).forEach(food => food.innerHTML) === '$ 0.00') {
+        for (let i = 0; i < totalFood.length; i++) {
+          console.log(totalFood[i])
+          console.log('konsolinu loopa')
+          if (totalFood.innerHTML !== '$ 0.00') {
+            modalContainer.style.display = 'block';
+            
+        } else {
+            alert('Please order at least one dish');
+            break;
+          // if (totalFood.innerHTML === '$ 0.00') {
           //   alert('Please order at least one dish');
             
           // } else {
-          // console.log(totalFood.parentElement)
-          modalContainer.style.display = 'block';
+          // modalContainer.style.display = 'block';
+        } 
         }
-    )
+      })
   })
 
   closeBtn.addEventListener('click', function () {
@@ -260,6 +274,12 @@ function renderAndBindMenuCategories() {
     });
  
   });
+
+  const cartContainer = document.querySelector('.order-order');
+  cartContainer.innerHTML = `<button class="filter-btn">ORDER</button>`
+  btnContainer.appendChild(cartContainer);
 }
+
+
 
 

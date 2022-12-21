@@ -202,6 +202,11 @@ span .fas {
   margin-top: 5px;
 }
 
+.price {
+  margin-right: 5px;
+}
+
+
 .item-text {
   margin-bottom: 0;
   padding-top: 1rem;
@@ -265,6 +270,7 @@ span .fas {
 .order-inc {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
+  margin-right: 5px;
 }
 
 .order-dec:hover {
@@ -277,13 +283,20 @@ span .fas {
   color: var(--white);
 }
 
-.order-order:hover {
-  background: var(--orange);
+
+/* styling modal */
+
+.order-order {
+  float: right;
+  background: var(--black);
   color: var(--white);
 }
 
-
-/* styling modal */
+.order-order .filter-btn {
+  /* font-family: var(--headerFontStyle);
+  letter-spacing: .2rem; */
+  font-size: 1.2em;
+}
 
 #modal-container {
   display: none;
@@ -469,19 +482,31 @@ span .fas {
 
 /* responsive design */
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 566px) {
   h1 {
     font-size: 3.5em;
   }
-  .btn-container {
+  .btn-container, .order-order {
     display: flex;
     flex-direction: column;
     width: 100%;
+  }
+  .order-order {
+    margin: 0;
   }
   .filter-btn {
     font-size: 1.5em;
     /* border: 0.2px solid var(--white); */
     margin: 0;
+  }
+  header h4 {
+    margin-left: 5px;
+  }
+  .food-total {
+    margin-left: 5px;
+  }
+  p {
+    padding: 0 5px;
   }
 }
 
