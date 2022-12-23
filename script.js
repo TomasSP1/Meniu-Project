@@ -135,36 +135,31 @@ function displayMenuItems(pageMenuItems) {
   
  
 
-  const openModal = document.querySelectorAll('.cart')
+  const openModal = document.querySelector('.cart')
   const closeBtn = document.getElementById('close-btn');
 
-  const totalFood = document.querySelectorAll('.food-total');
-
-
-  
-
-
+  // const totalFood = document.querySelectorAll('.food-total');
 
 
   
   // bandymas.setAttribute('data-class', 'bandymas');
  
   // console.log(bandymas.innerHTML)
-  openModal.forEach((open) => {
-      open.addEventListener('click', function () {
-          if (cart_list.length > 0) {
-            modalContainer.style.display = 'block';
+  
+  openModal.addEventListener('click', function() {
+        if (cart_list.length > 0) {
+          modalContainer.style.display = 'block';
         } else {
-            alert('Please order at least one dish');
-            
-          // if (totalFood.innerHTML === '$ 0.00') {
-          //   alert('Please order at least one dish');
-            
-          // } else {
-          // modalContainer.style.display = 'block';
-        } 
-      })
-  })
+          alert('Please order at least one dish');
+          
+        // if (totalFood.innerHTML === '$ 0.00') {
+        //   alert('Please order at least one dish');
+          
+        // } else {
+        // modalContainer.style.display = 'block';
+      } 
+    })
+  
 
 
   closeBtn.addEventListener('click', function () {
@@ -180,19 +175,19 @@ function displayMenuItems(pageMenuItems) {
  
   })
  
-  const order_btns = document.querySelectorAll('.order-btn');
-  const modal_input = document.querySelector('.modal-input');
-  const custom_select = document.querySelector('.custom-select')
+  // const order_btns = document.querySelectorAll('.order-btn');
+  // const modal_input = document.querySelector('.modal-input');
+  // const custom_select = document.querySelector('.custom-select')
 
-  // console.log(custom_select)
+  // // console.log(custom_select)
 
-  // order_btns.forEach(order => {
-  //   order.addEventListener('click', function() {
-  //     if (modal_input.length < 3) {
-  //       alert('Please eneter more than 3 letters');
-  //     }
-  //   })
-  // })
+  // // order_btns.forEach(order => {
+  // //   order.addEventListener('click', function() {
+  // //     if (modal_input.length < 3) {
+  // //       alert('Please eneter more than 3 letters');
+  // //     }
+  // //   })
+  // // })
 
  
   // heart button and localStorage
