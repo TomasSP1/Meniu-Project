@@ -13,6 +13,10 @@ window.addEventListener("DOMContentLoaded", function () {
 const section_center = document.querySelector('.section-center');
 const btnContainer = document.querySelector(".btn-container")
 
+
+const cart_list = [];
+
+
 function displayMenuItems(pageMenuItems) {
  
   let menuItemsHtml = pageMenuItems.map(function (item) {
@@ -63,13 +67,15 @@ function displayMenuItems(pageMenuItems) {
     food.addEventListener('click', (event) => {
  
       if (event.target.classList.contains('order-dec') || event.target.parentElement.classList.contains('order-dec')) {
- 
+        cart_list.pop()
+
         changeOrder(food, 'dec');
  
       }
  
  
       if (event.target.classList.contains('order-inc') || event.target.parentElement.classList.contains('order-inc')) {
+        cart_list.push(food)
  
         changeOrder(food, 'inc');
  
@@ -114,7 +120,7 @@ function displayMenuItems(pageMenuItems) {
                                   </div>
                                   <label for="" class="label_address">Pristatymo adresas / Restorano adresas</label>
                                   <div class="modal-input-div">
-                                      <input type="text" class="modal-input" required placeholder="Kauno g. 22, Kaunas">
+                                      <input type="text" class="modal-input" minlength="4" required placeholder="Kauno g. 22, Kaunas">
                                   </div>
                                   <div id="close-btn">&times;</div>
                                   <div class="order-btn-container">
@@ -134,7 +140,7 @@ function displayMenuItems(pageMenuItems) {
 
   const totalFood = document.querySelectorAll('.food-total');
 
-  console.log(totalFood.innerHTML)
+
   
 
 
@@ -146,24 +152,20 @@ function displayMenuItems(pageMenuItems) {
   // console.log(bandymas.innerHTML)
   openModal.forEach((open) => {
       open.addEventListener('click', function () {
-        for (let i = 0; i < totalFood.length; i++) {
-          console.log(totalFood[i])
-          console.log('konsolinu loopa')
-          if (totalFood.innerHTML !== '$ 0.00') {
+          if (cart_list.length > 0) {
             modalContainer.style.display = 'block';
-            
         } else {
             alert('Please order at least one dish');
-            break;
+            
           // if (totalFood.innerHTML === '$ 0.00') {
           //   alert('Please order at least one dish');
             
           // } else {
           // modalContainer.style.display = 'block';
         } 
-        }
       })
   })
+
 
   closeBtn.addEventListener('click', function () {
     modalContainer.style.display = 'none';
@@ -180,16 +182,19 @@ function displayMenuItems(pageMenuItems) {
  
   const order_btns = document.querySelectorAll('.order-btn');
   const modal_input = document.querySelector('.modal-input');
+  const custom_select = document.querySelector('.custom-select')
 
-  order_btns.forEach(order => {
-    order.addEventListener('click', function() {
-      if (!(modal_input.value === '')) {
-        alert('Your order has been accepted');
-      }
-    })
-  })
+  // console.log(custom_select)
 
+  // order_btns.forEach(order => {
+  //   order.addEventListener('click', function() {
+  //     if (modal_input.length < 3) {
+  //       alert('Please eneter more than 3 letters');
+  //     }
+  //   })
+  // })
 
+ 
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
  
