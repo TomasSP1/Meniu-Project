@@ -100,95 +100,6 @@ function displayMenuItems(pageMenuItems) {
  
   }
  
-  // creating modal
- 
-  const modalContainer = document.getElementById('modal-container')
- 
-  const displayModal = `
-                        <div id="modal">
-                              <div id="first-part-block">
-                                  <img src="./back_img/food-icon.png" alt="Italian Trulli" id="food-icon">
-                              </div>
-                              <form action="" class="modal-form">
-                                  <div class="modal-selection">
-                                      <label for="" class="label_delivery">Pristatymo būdas</label>
-                                      <select  class="custom-select mas" id="select_delivery" required>
-                                          <option value="" disabled selected>Pasirinkti...</option>
-                                          <option value="Pristatymas į namus">Pristatymas į namus</option>
-                                          <option value="Atsiėmimas vietoje">Atsiėmimas vietoje</option>
-                                      </select>
-                                  </div>
-                                  <label for="" class="label_address">Pristatymo adresas / Restorano adresas</label>
-                                  <div class="modal-input-div">
-                                      <input type="text" class="modal-input" minlength="4" required placeholder="Kauno g. 22, Kaunas">
-                                  </div>
-                                  <div id="close-btn">&times;</div>
-                                  <div class="order-btn-container">
-                                      <button class="order-btn">Užsakyti</button>
-                                  </div>
-                              </form>
-                          </div>`
- 
-  modalContainer.innerHTML = displayModal;
- 
-  // const mainHeader = document.querySelector('.main-header');
-  
- 
-
-  const openModal = document.querySelector('.cart')
-  const closeBtn = document.getElementById('close-btn');
-
-  // const totalFood = document.querySelectorAll('.food-total');
-
-
-  
-  // bandymas.setAttribute('data-class', 'bandymas');
- 
-  // console.log(bandymas.innerHTML)
-  
-  openModal.addEventListener('click', function() {
-        if (cart_list.length > 0) {
-          modalContainer.style.display = 'block';
-        } else {
-          alert('Please order at least one dish');
-          
-        // if (totalFood.innerHTML === '$ 0.00') {
-        //   alert('Please order at least one dish');
-          
-        // } else {
-        // modalContainer.style.display = 'block';
-      } 
-    })
-  
-
-
-  closeBtn.addEventListener('click', function () {
-    modalContainer.style.display = 'none';
-  })
- 
- 
-  window.addEventListener('click', function (e) {
- 
-    if (e.target === modalContainer) {
-      modalContainer.style.display = 'none';
-    }
- 
-  })
- 
-  // const order_btns = document.querySelectorAll('.order-btn');
-  // const modal_input = document.querySelector('.modal-input');
-  // const custom_select = document.querySelector('.custom-select')
-
-  // // console.log(custom_select)
-
-  // // order_btns.forEach(order => {
-  // //   order.addEventListener('click', function() {
-  // //     if (modal_input.length < 3) {
-  // //       alert('Please eneter more than 3 letters');
-  // //     }
-  // //   })
-  // // })
-
  
   // heart button and localStorage
   const myArray = JSON.parse(localStorage.getItem("favorite")) || [];
@@ -233,7 +144,6 @@ function displayMenuItems(pageMenuItems) {
 // creating buttons for menu filtering
  
 function renderAndBindMenuCategories() {
- 
   const categories = menu.reduce(
     function (values, item) {
       if (!values.includes(item.category)) {
@@ -243,7 +153,7 @@ function renderAndBindMenuCategories() {
     },
     ["all"]
   );
- 
+
   const categoryBtns = categories
     .map(function (category) {
       return `<button type="button" class="filter-btn" data-id=${category}>
@@ -251,28 +161,30 @@ function renderAndBindMenuCategories() {
           </button>`;
     })
     .join("");
- 
+
   btnContainer.innerHTML = categoryBtns;
- 
+
   const filterBtns = btnContainer.querySelectorAll(".filter-btn");
- 
+
   filterBtns.forEach(function (btn) {
     btn.addEventListener("click", function (e) {
       const category = e.currentTarget.dataset.id;
- 
+
       const menuCategory = menu.filter(function (menuItem) {
         if (menuItem.category === category) {
           return menuItem;
         }
       });
- 
+
       if (category === "all") {
         displayMenuItems(menu);
       } else {
         displayMenuItems(menuCategory);
       }
+
+      // Clear the cart_list
+      cart_list.length = 0;
     });
- 
   });
 
   const cartContainer = document.querySelector('.order-order');
@@ -280,6 +192,65 @@ function renderAndBindMenuCategories() {
   btnContainer.appendChild(cartContainer);
 }
 
+// creating modal
+ 
+const modalContainer = document.getElementById('modal-container')
+ 
+const displayModal = `
+                      <div id="modal">
+                            <div id="first-part-block">
+                                <img src="./back_img/food-icon.png" alt="Italian Trulli" id="food-icon">
+                            </div>
+                            <form action="" class="modal-form">
+                                <div class="modal-selection">
+                                    <label for="" class="label_delivery">Pristatymo būdas</label>
+                                    <select  class="custom-select mas" id="select_delivery" required>
+                                        <option value="" disabled selected>Pasirinkti...</option>
+                                        <option value="Pristatymas į namus">Pristatymas į namus</option>
+                                        <option value="Atsiėmimas vietoje">Atsiėmimas vietoje</option>
+                                    </select>
+                                </div>
+                                <label for="" class="label_address">Pristatymo adresas / Restorano adresas</label>
+                                <div class="modal-input-div">
+                                    <input type="text" class="modal-input" minlength="4" required placeholder="Kauno g. 22, Kaunas">
+                                </div>
+                                <div id="close-btn">&times;</div>
+                                <div class="order-btn-container">
+                                    <button class="order-btn">Užsakyti</button>
+                                </div>
+                            </form>
+                        </div>`
 
+modalContainer.innerHTML = displayModal;
+
+const openModal = document.querySelector('.cart');
+const closeBtn = document.getElementById('close-btn');
+const orderBtn = document.querySelector('.order-btn');
+
+openModal.addEventListener('click', function () {
+  if (cart_list.length > 0) {
+    modalContainer.style.display = 'block';
+  } else {
+    alert('Please order at least one dish');
+  }
+});
+
+orderBtn.addEventListener('click', function () {
+  if (cart_list.length === 0) {
+    alert('Please order at least one dish');
+  } else {
+    // Perform the order logic here
+  }
+});
+
+closeBtn.addEventListener('click', function () {
+  modalContainer.style.display = 'none';
+});
+
+window.addEventListener('click', function (e) {
+  if (e.target === modalContainer) {
+    modalContainer.style.display = 'none';
+  }
+});
 
 
